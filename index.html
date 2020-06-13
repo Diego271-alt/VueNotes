@@ -7,8 +7,32 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ tema }}</h1>
+        <!-- En este caso la directiva que nos permite 
+        indicar que las direcciones seran elementos que se evaluan
+    y se interpolan con una propiedad del modelo de vue es v-bind:-->
+            <!-- En este caso estamos crando un input que tiene la propiedad 
+            de v-model con esto estamos haciendo algo de data binding y enlazando
+        la propiedad de url -->
+           
+        
+        <!--<input type="text" v-model="url" name="" id="">
+            <a v-bind:href="url"> Git Hub de diego</a>-->
+
+
+        <!--EJEMPLO 2 IMAGENES REACTIVAS-->
+        <input v-model:"ancho" type="range">Alto
+        <br>
+        <input v-model:"alto" type="range">Ancho
+
+        <br>
+        <img v-bind:src="urlCompleta" alt="">
+
+
+
+
     </div>
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,7 +45,21 @@
         new Vue({
             el:'#app',
             data: {
-                tema:"Vue proyecto"
+                //url:"https://github.com/Diego271-alt/VueNotes/tree/master",
+
+                //EJEMPLO 2 IMAGENES REACTIVAS
+                baseUrl:"https://placekitten.com",
+                ancho:50,
+                alto:70,
+
+            },
+            //estas son propiedades computadas 
+
+            computed: {
+                    urlCompleta(){
+                            return `${this.baseUrl}/${this.alto*3}/${this.ancho*3}`
+
+                    }
             }
         })
         Vue.config.devtools =true;
